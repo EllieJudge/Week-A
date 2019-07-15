@@ -72,7 +72,6 @@ function withdrawMoolaFunc() {
         userInput = prompt("Enter amount: ")
         withdrawalSum(userInput)
         break;
-
     }
 }
 
@@ -84,7 +83,7 @@ function withdrawalSum(moola) {
        return run = false
     }
     alert(`You have withdrawn £${moola}. Your new balance is £${balance}`)
-    withdrawMoolaFunc()
+    menuOptions;
 }
 
 //add moola to your account
