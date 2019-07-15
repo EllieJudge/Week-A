@@ -55,7 +55,6 @@ function checkBalanceFunc() {
 
 function withdrawMoolaFunc() {
     userInput = prompt(`How much would you like to withdraw today? \n1. £5  \n2. £10 \n3. £20 \n4. £50 \n5. Other`)
-<<<<<<< HEAD
     switch (userInput) {
         case "1":
             withdrawalSum(5)
@@ -75,27 +74,6 @@ function withdrawMoolaFunc() {
 
 function withdrawalSum(moola) {
     balance = balance - moola
-=======
-switch(userInput) {
-    case 1:
-    withdrawalAmount = 5;
-    balance = balance - withdrawalAmount
-    alert(`You have withdrawn £5. Your new balance is £${balance}`)
-    break;
-    case 2:
-    withdrawalAmount = 10;
-    balance = balance - withdrawalAmount
-    alert(`You have withdrawn £10. Your new balance is £${balance}`)
-    break
-
-    //this is not working - why? hmm
-}
-}
-
-
-
-function makeDepositFunc(){
->>>>>>> 037472f242c8a0b532d06f96f099d732bcedcc6d
 
     if (balance < 0) {
         prompt("You dont have enough money to withdraw that amount. Would you like another service? \n1. Yes \n2. No")

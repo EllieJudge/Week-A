@@ -19,7 +19,7 @@
 //     rosie.increaseHops()
 //     console.log(rosie.hops)
 
-
+//Leonas Car Example
 class Car{
     constructor(reg){
         this._reg = reg;
