@@ -33,6 +33,7 @@ function menuOptions() {
     } else if (userInput == 4) {
         changePinFunc()
     } else alert("Does not compute. Bye.")
+    run = false;
 }
 if (run){
     menuOptions();
@@ -57,31 +58,37 @@ function withdrawMoolaFunc() {
     userInput = prompt(`How much would you like to withdraw today? \n1. £5  \n2. £10 \n3. £20 \n4. £50 \n5. Other`)
     switch (userInput) {
         case "1":
-            withdrawalSum(5)
+            withdrawalSum(5);
+            menuOptions();
             break;
         case "2":
-            withdrawalSum(10)
+            withdrawalSum(10);
+            menuOptions();
             break;
         case "3":
-            withdrawalSum(20)
+            withdrawalSum(20);
+            menuOptions();
             break;
         case "4":
-        withdrawalSum(50)
+        withdrawalSum(50);
+        menuOptions();
         break;
         case"5":
         userInput = prompt("Enter amount: ")
         withdrawalSum(userInput)
+        menuOptions();
         break;
     }
 }
 
 //calculates balance - withdrawal amount, exits if not enough moola
 function withdrawalSum(moola) {
-    balance = balance - moola
-    if (balance < 0) {
+    if (balance < moola) {
         alert("You dont have enough money to withdraw that amount, kid. Sorry.")
-       return run = false
+       run = false
+       return
     }
+    balance = balance - moola
     alert(`You have withdrawn £${moola}. Your new balance is £${balance}`)
     menuOptions;
 }
@@ -91,6 +98,7 @@ function makeDepositFunc() {
     userInput = prompt('How much would you like to deposit today?')
     balance = +balance + +userInput
     alert (`Your new balance is £${balance}`)
+    menuOptions();
 }
 
 //enter pin to change pin
