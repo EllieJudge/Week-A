@@ -21,14 +21,14 @@ class Animal {
     get health() {
         return this._health;
     }
-    eat() {
+    giveFood() {
         this._hunger--;
     }
-    drink() {
+    giveDrink() {
         this._thirst--;
     }
     makeHappy() {
-        this._happiness++
+        this._happiness++;
     }
 }
 
@@ -40,9 +40,10 @@ class Rabbit extends Animal {
     get hops() {
         return this._hops;
     }
-
     increaseHops() {
         this._hops++;
+        this._thirst++;
+        this._hunger++;
     }
 }
 
@@ -80,43 +81,100 @@ function rabbitFunc() {
     \n3. Cuddle your rabbit \n4. Nothing`)
     switch (userInput) {
         case "1": //feed
-            console.log(`Rabbit hunger is ${rabbit._hunger}`)
-            rabbit.eat();
+            console.log(`Rabbit hunger was ${rabbit._hunger}`)
+            rabbit.giveFood();
             alert(`Yay! You fed your rabbit`)
             console.log(`Rabbit hunger is now ${rabbit._hunger}`)
             rabbit.makeHappy();
+            rabbit.increaseHops();
             console.log(`Rabbit happiness is ${rabbit._happiness}`)
+            checkHunger();
+            rabbitFunc();
             break;
         case "2": //water
             console.log(`Rabbit thirst is ${rabbit._thirst}`)
-            rabbit.drink();
+            rabbit.giveDrink();
             alert(`Yay! You watered your rabbit`)
             console.log(`Rabbit thirst is now ${rabbit._thirst}`)
             rabbit.makeHappy();
             console.log(`Rabbit happiness is ${rabbit._happiness}`)
             break;
         case "3"://cuddle
-            console.log(`Rabbit happiness is ${rabbit._happiness}`)
             alert(`Yay! You cuddled your rabbit`)
+            console.log(`Rabbit happiness was ${rabbit._happiness}`)
             rabbit.makeHappy();
             console.log(`Rabbit happiness is now ${rabbit._happiness}`)
-            console.log(rabbit)
-            rabbit.increaseHops()
-            console.log(rabbit.hops)
+            console.log(`Hops before cuddle: ${rabbit._hops}`)
+            rabbit.increaseHops();
+            rabbit.increaseHops();
+            console.log(`Your rabbit is so hopping happy! Hops: ${rabbit._hops}`)
             break;
         case "4": //nothing
-        //console.log(`Rabbit happiness is ${rabbit._happiness}`)
-        console.log(`Rabbit thirst is now ${rabbit._thirst}`) //10
-        //console.log(`Rabbit hunger is now ${rabbit._hunger}`)
-        rabbit._thirst++
-        console.log(`Rabit thirst is now: ${rabbit._thirst}`)  
+        console.log(`Rabbit happiness was ${rabbit._happiness}`)
+        console.log(`Rabbit thirst was ${rabbit._thirst}`) 
+        console.log(`Rabbit hunger was ${rabbit._hunger}`)
+        console.log(`Rabbit hunger was ${rabbit._hops}`)
+        rabbit._happiness--;
+        rabbit._thirst++;
+        rabbit._hunger++;
+        rabbit.increaseHops();
+        console.log(`Rabbit happiness is now ${rabbit._happiness}`)
+        console.log(`Rabbit thirst is now ${rabbit._thirst}`) 
+        console.log(`Rabbit hunger is now ${rabbit._hunger}`)
+        console.log(`Rabbit hunger is now ${rabbit._hops}`)
     }
+}
+
+
+
+
+function checkHunger() {
+    if (rabbit._hunger < 3) {
+        alert(`Your ${pet} is hungry. Feed them!`)
+    }
+}
+
+function checkThirst() {
+    if (rabbit._thirst < 3) {
+        alert(`Your ${pet} is thirsty. Feed them!`)
+    }
+}
+
+function checkHappiness() {
+    if (rabbit._happiness < 3) {
+        alert(`Your ${pet} is sad. Show them some love!`)
+    }
+}
+
+function checkHealth() {
+
+}
+
+
+
+
+
+
+function catFunc() {
+    console.log("Meow")
+}
+
+function dogFunc() {
+    console.log("Woof")
 }
 
 function runPetShop() {
     let pet = choosePet()
     let name = chooseName()
     console.log(pet, name)
-    rabbitFunc()
+    if (pet == "rabbit"){
+        rabbitFunc();
+    }
+    else if (pet == "cat") {
+        catFunc();
+    }
+    else if (pet == "dog") {
+        dogFunc();
+    }
 }
 runPetShop()
