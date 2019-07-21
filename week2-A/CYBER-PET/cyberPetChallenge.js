@@ -1,4 +1,4 @@
-class Animal {
+class Pet {
     constructor(name) {
         this._name = name;
         this._hunger = 5;
@@ -14,18 +14,13 @@ class Animal {
     get thirst() {
         return this._thirst;
     }
-    get happiness() {
-        return this._happiness;
-    }
     giveFood() {
         this._hunger--;
         this._thirst++;
-        this._happiness++;
     }
     giveDrink() {
         this._thirst--;
         this._hunger++;
-        this._happiness++;
     }
     doNothing() {
         this._hunger++;
@@ -34,7 +29,7 @@ class Animal {
     }
 }
 
-class Rabbit extends Animal {
+class Rabbit extends Pet {
     constructor(name) {
         super(name);
         this._hops = 0;
@@ -49,6 +44,7 @@ class Rabbit extends Animal {
     }
 }
 
+const rabbit = new Rabbit("rabbit");
 
 function choosePet() {
     userInput = prompt(`Hello. Welcome to the petshop! Which type of pet would you like? 
@@ -77,25 +73,31 @@ function chooseName() {
 
 
 function rabbitFunc() {
-    const rabbit = new Rabbit("rabbit");
-
     userInput = prompt(`Would you like to \n1. Feed your rabbit \n2. Water your rabbit 
     \n3. Cuddle your rabbit \n4. Nothing`)
     switch (userInput) {
         case "1": //feed
+            console.log("You chose to feed your rabbit")
             console.log(`Rabbit hunger was ${rabbit._hunger}`)
+            console.log(`Rabbit thirst was ${rabbit._thirst}`)
             rabbit.giveFood();
             alert(`Yay! You fed your rabbit`)
             console.log(`Rabbit hunger is now ${rabbit._hunger}`)
-            rabbit.increaseHops();
-            checkHunger();
+            console.log(`Rabbit thirst is now ${rabbit._thirst}`)
+            checkThirst();
+            checkHealth();
             rabbitFunc();
             break;
         case "2": //water
-            console.log(`Rabbit thirst is ${rabbit._thirst}`)
+            console.log("You chose to water your rabbit")
+            console.log(`Rabbit thirst was ${rabbit._thirst}`)
+            console.log(`Rabbit hunger was ${rabbit._hunger}`)
             rabbit.giveDrink();
-            alert(`Yay! You watered your rabbit`)
+            alert(`Yay! You gave your rabbit a drink`)
             console.log(`Rabbit thirst is now ${rabbit._thirst}`)
+            console.log(`Rabbit hunger is now ${rabbit._hunger}`)
+            checkHunger();
+            checkHealth();
             rabbitFunc();
             break;
         case "3"://cuddle
@@ -107,9 +109,11 @@ function rabbitFunc() {
             rabbitFunc();
             break;
         case "4": //nothing
-        rabbit._thirst++;
-        rabbit._hunger++;
-        rabbit.increaseHops();
+        console.log(`Rabbit thirst was ${rabbit._thirst}`) 
+        console.log(`Rabbit hunger was ${rabbit._hunger}`)
+        console.log(`Rabbit hunger was ${rabbit._hops}`)
+        doNothing();
+        //rabbit.increaseHops();
         console.log(`Rabbit thirst is now ${rabbit._thirst}`) 
         console.log(`Rabbit hunger is now ${rabbit._hunger}`)
         console.log(`Rabbit hunger is now ${rabbit._hops}`)
@@ -119,36 +123,33 @@ function rabbitFunc() {
 
 
 function checkHunger() {
-    if (this._hunger < 3) {
+    if (rabbit._hunger < 3) {
         alert(`Your ${pet} is hungry. Feed them!`)
+        console.log(`Your ${pet} is hungry. Feed them!`)
     }
 }
 
 function checkThirst() {
-    if (this._thirst < 3) {
-        alert(`Your ${pet} is thirsty. Feed them!`)
+    if (rabbit._thirst > 7) {
+        alert(`Your ${pet} is thirsty. Give them a drink!`)
+        console.log(`Your ${pet} is thirsty. Water them!`)
     }
 }
 
 function checkHappiness() {
-    if (this._happiness < 3) {
+    if (rabbit._happiness < 3) {
         alert(`Your ${pet} is sad. Show them some love!`)
+        console.log(`Your ${pet} is sad. Show them some love!`)
     }
 }
 
-
-
-
-
-
-
-function catFunc() {
-    console.log("Meow")
+function checkHealth() {
+    if (rabbit._hunger > 10 || rabbit._thirst > 10) {
+        alert (`Your ${pet} is dead. You killed it. Game over, murderer. Go away and think about what you've done.`)
+    } 
 }
 
-function dogFunc() {
-    console.log("Woof")
-}
+
 
 function runPetShop() {
     let pet = choosePet()
