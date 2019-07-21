@@ -126,8 +126,6 @@ function rabbitFunc() {
 }
 
 
-
-
 function checkHunger() {
     if (rabbit._hunger < 3) {
         alert(`Your ${pet} is hungry. Feed them!`)
